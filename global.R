@@ -14,7 +14,12 @@ if (!require('Rsamtools')){
   biocLite("Rsamtools")
 }
 
+if (!require('httpuv')){
+  install.packages("httpuv")
+}
+
 ## R functions ##
 source("functions/data_preproc.R")
 source("functions/HCMM_CNVs.R")
 source("functions/plot_HCMMCNVs.R")
+source("functions/Mixture_Model.R")
