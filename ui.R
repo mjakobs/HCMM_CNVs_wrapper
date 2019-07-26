@@ -5,7 +5,7 @@ library(shinyFiles)
 shinythemes::themeSelector()
 navbarPage(
   theme = shinytheme("cerulean"),
-  "HCMM_CNVs",
+  "HCMMCNVs",
   # First bar: Title Search
   tabPanel("Data pre-processing",
            sidebarPanel(
@@ -54,7 +54,7 @@ navbarPage(
            )
   ),
   # Second bar: Hierarchical Clustering Mixture Model Copy Number Variants
-  tabPanel("Run HCMM_CNVs",
+  tabPanel("Run HCMMCNVs",
            sidebarPanel(
              #radioButtons("Cov_Mtx_bar2", label = h4("Coverage Matrix"),
             #              choices = list("Processed data" = 1, "Saved data" = 2), 
