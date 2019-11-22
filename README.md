@@ -14,3 +14,7 @@ install.packages('shiny')
 library(shiny)
 shiny::runGitHub("HCMM_CNVs","lunching")
 ```
+
+## Tutorial of HCMMCNVs can be downloaded at
+
+[http://nbviewer.jupyter.org/github/metaOmics/tutorial/blob/master/metaOmics_turtorial.pdf](http://nbviewer.jupyter.org/github/metaOmics/tutorial/blob/master/metaOmics_turtorial.pdf)
