@@ -17,4 +17,10 @@ shiny::runGitHub("HCMM_CNVs","lunching")
 
 ## Tutorial of HCMMCNVs can be downloaded at
 
-[https://github.com/lunching/HCMM_CNVs/blob/master/A%20Tutorial%20for%20HCMMCNVs_20191114.pdf](https://github.com/lunching/HCMM_CNVs/blob/master/A%20Tutorial%20for%20HCMMCNVs_20191114.pdf)
+(Will upload and provide the link of supplementary materials upon publication)
+
+## How to Cite
+
+If you find HCMMCNVs usefull in your research please city our paper
+
+(Will add citation upon publication)
