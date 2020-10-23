@@ -4,14 +4,17 @@ if (!require('shiny')) install.packages("shiny")
 if (!require('shinythemes')) install.packages("shinythemes") 
 if (!require('shinyFiles')) install.packages("shinyFiles") 
 
+if (!requireNamespace("BiocManager", quietly = TRUE)){
+  install.packages("BiocManager")
+}
+  
+
 if (!require('DNAcopy')){
-  source("https://bioconductor.org/biocLite.R")
-  biocLite("DNAcopy")
+  BiocManager::install("DNAcopy")
 }
  
 if (!require('Rsamtools')){
-  source("https://bioconductor.org/biocLite.R")
-  biocLite("Rsamtools")
+  BiocManager::install("Rsamtools")
 }
 
 if (!require('httpuv')){
