@@ -14,7 +14,7 @@ navbarPage(
              tags$div(class="form-group shiny-input-container", 
                       tags$div(tags$label(h4("2. Bed file input"))),
                       tags$div(tags$label("Choose folder", class="btn btn-primary",
-                                          tags$input(id = "fileIn", webkitdirectory = TRUE, type = "file", style="display: none;", onchange="pressed()"))),
+                                          tags$input(id = "fileIn", webkitfile = TRUE, type = "file", style="display: none;", onchange="pressed()"))),
                       #tags$label("No folder choosen", id = "noFile"),
                       tags$div(id="fileIn_progress", class="progress progress-striped active shiny-file-input-progress",
                                tags$div(class="progress-bar")
@@ -62,7 +62,7 @@ navbarPage(
              tags$div(tags$label(h4("1. Load the coverage .RData"))),
              tags$div(class="form-group shiny-input-container", 
                       tags$div(tags$label("Choose Coverage RData", class="btn btn-primary",
-                                          tags$input(id = "CovfileIn", webkitdirectory = TRUE, type = "file", style="display: none;", onchange="pressed()"))),
+                                          tags$input(id = "CovfileIn", webkitfile = TRUE, type = "file", style="display: none;", onchange="pressed()"))),
                       #tags$label("No folder choosen", id = "CovnoFile"),
                       tags$div(id="CovfileIn_progress", class="progress progress-striped active shiny-file-input-progress",
                                tags$div(class="progress-bar")
@@ -81,13 +81,13 @@ navbarPage(
              #tableOutput("Stat_Table_bar2")
            )
   ),
-  # Third bar: Visulization
+  # Third bar: Visualization
   tabPanel("Visulization",
            sidebarPanel(
              tags$div(tags$label(h4("1. Load the CBS result"))),
              tags$div(class="form-group shiny-input-container", 
                       tags$div(tags$label("Choose CBS results", class="btn btn-primary",
-                                          tags$input(id = "CBSfileIn", webkitdirectory = TRUE, type = "file", style="display: none;", onchange="pressed()"))),
+                                          tags$input(id = "CBSfileIn", webkitfile = TRUE, type = "file", style="display: none;", onchange="pressed()"))),
                       #tags$label("No folder choosen", id = "CBSnoFile"),
                       tags$div(id="CBSfileIn_progress", class="progress progress-striped active shiny-file-input-progress",
                                tags$div(class="progress-bar")
