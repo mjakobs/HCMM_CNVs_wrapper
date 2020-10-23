@@ -7,9 +7,22 @@ options(shiny.maxRequestSize=1000*1024^2)
 
 server = function(input, output, session){
   # First Bar
-  roots <- getVolumes()
-  shinyDirChoose(input, 'bam_dir', session=session, roots = roots)
-  output$filepaths <- renderPrint({parseDirPath(roots, input$bam_dir)})
+  #roots <- getVolumes()
+  #shinyDirChoose(input, 'bam_dir', roots = c(home = '~'))
+  #return(print(getwd()))
+  volumes <- getVolumes()()
+  
+  shinyDirChoose(input, 'bam_dir', roots=volumes, session=session)
+  #shinyDirChoose(input, 'bam_dir', roots = c(home = '/home'))
+  #shinyDirChoose(
+  #  input,
+  #  'bam_dir',
+    #roots = c(home = '~'),
+  #  roots = c(home = '~')
+    #filetypes = c('', 'txt', 'bigWig', "tsv", "csv", "bw")
+  #)
+  
+  output$filepaths <- renderPrint({parseDirPath(getVolumes()(), input$bam_dir)})
   
   df <- reactive({
     inFiles <- input$fileIn
@@ -40,7 +53,7 @@ server = function(input, output, session){
       df <- rbind(df, tmp)
     }
     df
-    data_preproc(bed_file = df, chr = input$chr_selected, bam_dir = parseDirPath(roots, input$bam_dir), min_cov = input$min_cov, filename = input$cov_filename, progress = progress1)
+    data_preproc(bed_file = df, chr = input$chr_selected, bam_dir = parseDirPath(getVolumes()(), input$bam_dir), min_cov = input$min_cov, filename = input$cov_filename, progress = progress1)
   })
   ## Data Summary
   output$text_bam_dir<- renderText({
