@@ -5,15 +5,16 @@ HCMMCNVs is a browser-based software for detecting copy number variants (CNVs) u
 ## How to start the software
 
 #### Requirement
-* R >= 3.4.1
+* R >= 4.0.1
 * Shiny >= 1.2.0
 
 * Open R 
 ```R
 install.packages('shiny')
 library(shiny)
-shiny::runGitHub("HCMM_CNVs","lunching")
+shiny::runGitHub("HCMM_CNVs","lunching", destdir = <your app directory>)
 ```
+setting the directory of downloaded HCMMCNVs using `destdir` (Directory to store the downloaded application files) is suggested because the stored segmentation mean for visualization modeule will be automatically saved under the app directory. 
 
 ## Tutorial of HCMMCNVs can be downloaded at
 
