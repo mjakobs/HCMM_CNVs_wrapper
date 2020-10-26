@@ -14,7 +14,7 @@ install.packages('shiny')
 library(shiny)
 shiny::runGitHub("HCMM_CNVs","lunching", destdir = <your app directory>)
 ```
-setting the directory of downloaded HCMMCNVs using `destdir` (Directory to store the downloaded application files) is suggested because the stored segmentation mean for visualization modeule will be automatically saved under the app directory. 
+Setting the directory of downloaded HCMMCNVs using `destdir` (Directory to store the downloaded application files) is suggested because the stored segmentation mean for visualization modeule will be automatically saved under the app directory. 
 
 ## Tutorial of HCMMCNVs can be downloaded at
 
