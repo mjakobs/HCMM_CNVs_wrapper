@@ -1,6 +1,6 @@
 # HCMMCNVs
 
-HCMMCNVs is a browser-based software for detecting copy number variants (CNVs) using whole exome sequencing (WES) technology 
+HCMMCNVs is a browser-based software for detecting copy number variants (CNVs) using whole exome sequencing (WES) technology in combining multiple processed bam inputs with different disease or tumor types.
 
 ## How to start the software
 
