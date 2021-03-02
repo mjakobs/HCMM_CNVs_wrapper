@@ -69,7 +69,12 @@ navbarPage(
                       )     
              ),
              numericInput("HC_n_clusters", label = h4("2. Hierarchical Clustering: number of clusters"), value = 3),
-             textInput("CBS_filename", label = h4("3. Output file name"), value = "Test"),
+             tags$div(tags$label(h4("3. Cancer cell line only (optional)"))),
+             radioButtons("radio_Ploidy", label = "Add ploidy estimation input?",
+                          choices = list("No" = 1, "Yes" = 2), 
+                          selected = 1),
+             fileInput("input_Ploidy_estimation", label = "Choose a file: "),
+             textInput("CBS_filename", label = h4("4. Output file name"), value = "Test"),
              #selectInput('yr_bar2', h3('Year'),
              #           choices = c(1968:2015), selectize = FALSE),
              #textInput("player_name_bar2", h3("Player's Name"), "Rafael Nadal"),

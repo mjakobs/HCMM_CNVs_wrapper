@@ -89,7 +89,8 @@ server = function(input, output, session){
     progress2 <- shiny::Progress$new()
     on.exit(progress2$close())  
     progress2$set(message = "Running HCMM_CNVs", value = 0)
-    HCMM_CNVs(Cov_matrix = matrix_adj_Cov_rm_duplicated, n_cluster = input$HC_n_clusters, bed_file_sorted = bed_file_sorted, sample_names = sample_names, filename = input$CBS_filename , progress = progress2)
+    inFile1 <- input$input_Ploidy_estimation
+    HCMM_CNVs(Cov_matrix = matrix_adj_Cov_rm_duplicated, n_cluster = input$HC_n_clusters, bed_file_sorted = bed_file_sorted, sample_names = sample_names, filename = input$CBS_filename , progress = progress2, ploidy = input$radio_Ploidy, ploidy_path = inFile1$datapath)
   })
   
   output$test<- renderText({
