@@ -70,7 +70,7 @@ navbarPage(
              ),
              numericInput("HC_n_clusters", label = h4("2. Hierarchical Clustering: number of clusters"), value = 3),
              tags$div(tags$label(h4("3. Cancer cell line only (optional)"))),
-             radioButtons("radio_Ploidy", label = "Add ploidy estimation input?",
+             radioButtons("radio_Ploidy", label = "Add ploidy input?",
                           choices = list("No" = 1, "Yes" = 2), 
                           selected = 1),
              fileInput("input_Ploidy_estimation", label = "Choose a file: "),
