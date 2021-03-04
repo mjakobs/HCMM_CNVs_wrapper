@@ -70,6 +70,7 @@ HCMM_CNVs<- function(Cov_matrix, n_cluster, bed_file_sorted, sample_names, filen
     h_all<- c()
     n_cluster_all<- c()
     Ps_est <- read.delim(ploidy_path, header = F, sep = "\t")
+    Cov_matrix_ori <- Cov_matrix
     Cov_matrix <- Cov_matrix*adj_tmp
     adj_tmp <- 2/as.numeric(Ps_est[,2])
     for(i in 1: ncol(Cov_matrix)){
@@ -94,7 +95,7 @@ HCMM_CNVs<- function(Cov_matrix, n_cluster, bed_file_sorted, sample_names, filen
       cluster_max_tmp<- which.max(table(cluster_tmp))
       trim_cov_mean_hc_ref[i]<- mean(Cov_matrix[which(cluster_tmp == cluster_max_tmp),i])
     }
-    matrix_adj_Cov_hc_log2_ratio<- log(t(Cov_matrix)/trim_cov_mean_hc_ref, base = 2)
+    matrix_adj_Cov_hc_log2_ratio<- log(t(Cov_matrix_ori)/trim_cov_mean_hc_ref, base = 2)
     
     ## Run Circular Binary Segmentation
     maploc_center_tmp<- (bed_file_sorted[,2] + bed_file_sorted[,3])/2
