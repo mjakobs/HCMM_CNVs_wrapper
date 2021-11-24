@@ -29,4 +29,4 @@ source(paste(code_dir,"functions/plot_HCMMCNVs.R", sep = ""))
 ######################
 # Run pre-processing #
 ######################
-data_preproc(bed_file = bed_file, chr = chr, bam_dir = bam_dir, min_cov = min_cov, filename = filename, )
+data_preproc(bed_file = bed_file, chr = chr, bam_dir = bam_dir, min_cov = min_cov, filename = filename)
