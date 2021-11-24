@@ -9,6 +9,8 @@ data_preproc<- function(bed_file, chr, bam_dir, min_cov, filename){
   bam_dir_tmp <-  dir(bam_dir)[grep(".bam",dir(bam_dir), fixed = T)]
   bam_dir_tmp2 <- bam_dir_tmp[grep(".bam",sapply(1: length(bam_dir_tmp), function(x) substr(bam_dir_tmp[x], nchar(bam_dir_tmp[x])-3, nchar(bam_dir_tmp[x])) ))]
   text_bam_numbers<- paste("There are ", length(bam_dir_tmp2), " bam files.", sep="" )
+  # Read in bed file
+  bed_file <- read.table(bed_file, sep = "\t", header = T)
   # Check given bed files
   bed_file <- bed_file[bed_file[,1]==chr, ]
   bed_file_sorted <- bed_file[order(bed_file[,2]), ]
