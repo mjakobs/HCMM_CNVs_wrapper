@@ -13,3 +13,19 @@ Bioinformatics. https://doi.org/10.1093/bioinformatics/btab183
 * R >= 4.0.1
 * `Rsamtools` package
 
+## Running the HCMM-CNVs wrapper
+
+Make sure R is loaded in your environment and then run the following in the folder in which you would like your results to be stored.  
+```
+bedfile="/data/tog/gmjakobsdottir/tools/HCMM_CNVs_wrapper/Toy_example/Demo.bed"
+chr="19"
+bam_directory="/data/tog/gmjakobsdottir/tools/HCMM_CNVs_wrapper/Toy_example/"
+min_coverage="10"
+filename="Test"
+n_cluster="3"
+code_dir="/data/tog/gmjakobsdottir/tools/HCMM_CNVs_wrapper/"
+ploidy_file="1"
+
+Rscript --vanilla /data/tog/gmjakobsdottir/tools/HCMM_CNVs_wrapper/HCMM_CNVs_wrapper.R $code_dir \
+$bedfile $chr $bam_directory $min_coverage $filename $n_cluster $ploidy_file
+```
