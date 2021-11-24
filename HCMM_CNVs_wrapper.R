@@ -45,6 +45,8 @@ if(paste(ploidy_path) == "1"){
   ploidy_option <- "ploidy_path = ploidy_path"
 }
 
+load(file = paste("Cov_matrix_", filename, ".RData", sep=""))
+
 HCMM_CNVs(Cov_matrix = matrix_adj_Cov_rm_duplicated, n_cluster = n_cluster, 
           bed_file_sorted = bed_file_sorted, sample_names = sample_names, 
           filename = filename, paste(ploidy_option))
