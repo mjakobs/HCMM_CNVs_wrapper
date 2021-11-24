@@ -1,5 +1,6 @@
 # Rscript to run HCMM-CNVs from the command line
-
+library(Rsamtools)
+library(DNAcopy)
 # expected input preproc: bed_file, chr, bam_dir, min_cov, filename -- removed progress
 # expected output preproc: sample_names, bed_file_sorted, matrix_adj_Cov_rm_duplicated
 # expected input HCMMCNVs: Cov_matrix (matrix_adj_Cov_rm_duplicated), n_cluster, bed_file_sorted (bed_file_sorted), sample_names (sample_names), filename, progress, ploidy = "1", ploidy_path = ""
