@@ -1,6 +1,6 @@
 library(Rsamtools)
 
-data_preproc<- function(bed_file, chr, bam_dir, min_cov, filename, progress){
+data_preproc<- function(bed_file, chr, bam_dir, min_cov, filename){
   # bam file directory
   #progress$inc(0.1, detail = paste("Checking bam files"))
   print(paste("Checking bam files"))
