@@ -2,7 +2,7 @@ library(Rsamtools)
 
 data_preproc<- function(bed_file, chr, bam_dir, min_cov, filename, progress){
   # bam file directory
-  progress$inc(0.1, detail = paste("Checking bam files"))
+  #progress$inc(0.1, detail = paste("Checking bam files"))
   text_bam_dir<- paste(bam_dir)
   # Check how many bam files in bam file directory
   bam_dir_tmp <-  dir(bam_dir)[grep(".bam",dir(bam_dir), fixed = T)]
@@ -29,7 +29,7 @@ data_preproc<- function(bed_file, chr, bam_dir, min_cov, filename, progress){
   TMR <- rep(0, length(bam_dir_tmp2))
   
   for(i in 1: length(bam_dir_tmp2)){
-    progress$inc((1/length(bam_dir_tmp2))*0.6 , detail = paste("Calculating coverage and total mapped read of sample ", i, sep=""))
+   # progress$inc((1/length(bam_dir_tmp2))*0.6 , detail = paste("Calculating coverage and total mapped read of sample ", i, sep=""))
     bam <- scanBam(paste(bam_dir, "/",bam_dir_tmp2[i], sep=""), param = param)[[1]]
     #readlength[i] <- round(mean(bam[["qwidth"]]))
     irang <- IRanges(bam[["pos"]], width = bam[["qwidth"]])
@@ -39,7 +39,7 @@ data_preproc<- function(bed_file, chr, bam_dir, min_cov, filename, progress){
   
   ##----- Data pre-processing -----##
   # 1. Remove duplicated regions
-  progress$inc(0.05, detail = paste("Removing duplicated regions..."))
+  #progress$inc(0.05, detail = paste("Removing duplicated regions..."))
   index_duplicated_region<- intersect(which(duplicated(bed_file_sorted[,2])), which(duplicated(bed_file_sorted[,3])))
   
   if(length(index_duplicated_region)>0){
@@ -48,7 +48,7 @@ data_preproc<- function(bed_file, chr, bam_dir, min_cov, filename, progress){
     bed_file_sorted<- bed_file_sorted[-index_duplicated_region, ]
   }
   # 2. Calculate the mean coverages for all region accross all cell lines 
-  progress$inc(0.05, detail = paste("Calculating the mean coverages for all regions..."))
+  #progress$inc(0.05, detail = paste("Calculating the mean coverages for all regions..."))
   mean_cov<- apply(Cov_matrix, 1, mean) # mean coverages for all regions
   index_mean_cov_10<- which(mean_cov < 10) # Index for the region with mean coverage from all regions across all cell lines less than 10
   
@@ -58,13 +58,13 @@ data_preproc<- function(bed_file, chr, bam_dir, min_cov, filename, progress){
     bed_file_sorted<- bed_file_sorted[-index_mean_cov_10, ]
   }
   # 3. Calculate the adjusted coverage 
-  progress$inc(0.1, detail = paste("Calculating adjusted coverage for all regions..."))
+  #progress$inc(0.1, detail = paste("Calculating adjusted coverage for all regions..."))
   mean_LS<- mean(TMR) # Mean of the library size
   lib_ratio<- mean_LS/TMR # ratio of the library size of each samples  
   matrix_adj_Cov_rm_duplicated<-  t(Cov_matrix + 1)*lib_ratio # +1 coverage to aviod NA 
   
   text_cov_summary<- paste("After data processing, there are ", ncol(matrix_adj_Cov_rm_duplicated), " target regions.", sep="")
-  progress$inc(0.1, detail = paste("Generating coverage matrix..."))
+  #progress$inc(0.1, detail = paste("Generating coverage matrix..."))
   save(sample_names, bed_file_sorted, matrix_adj_Cov_rm_duplicated, file = paste(bam_dir, "/", "Cov_matrix_", filename, ".RData", sep=""))
   text_cov_rdata<- paste("Coverage results were saved to ",bam_dir, "/", "Cov_matrix_", filename, ".RData.",  sep="")
   
