@@ -1,0 +1,9 @@
+/Users/user/Documents/GitHub/HCMM_CNVs_wrapper/Toy_example/CCLE_demo_S1.mini.bam
+/Users/user/Documents/GitHub/HCMM_CNVs_wrapper/Toy_example/CCLE_demo_S2.mini.bam
+/Users/user/Documents/GitHub/HCMM_CNVs_wrapper/Toy_example/CCLE_demo_S3.mini.bam
+/Users/user/Documents/GitHub/HCMM_CNVs_wrapper/Toy_example/CCLE_demo_S4.mini.bam
+/Users/user/Documents/GitHub/HCMM_CNVs_wrapper/Toy_example/CCLE_demo_S5.mini.bam
+/Users/user/Documents/GitHub/HCMM_CNVs_wrapper/Toy_example/CCLE_demo_S6.mini.bam
+/Users/user/Documents/GitHub/HCMM_CNVs_wrapper/Toy_example/CCLE_demo_S7.mini.bam
+/Users/user/Documents/GitHub/HCMM_CNVs_wrapper/Toy_example/CCLE_demo_S8.mini.bam
+/Users/user/Documents/GitHub/HCMM_CNVs_wrapper/Toy_example/CCLE_demo_S9.mini.bam

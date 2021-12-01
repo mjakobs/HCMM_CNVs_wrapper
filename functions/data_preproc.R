@@ -6,9 +6,12 @@ data_preproc<- function(bed_file, chr, bam_dir, min_cov, filename){
   print(paste("Checking bam files"))
   text_bam_dir<- paste(bam_dir)
   # Check how many bam files in bam file directory
-  bam_dir_tmp <-  dir(bam_dir)[grep(".bam",dir(bam_dir), fixed = T)]
-  bam_dir_tmp2 <- bam_dir_tmp[grep(".bam",sapply(1: length(bam_dir_tmp), function(x) substr(bam_dir_tmp[x], nchar(bam_dir_tmp[x])-3, nchar(bam_dir_tmp[x])) ))]
+  # bam_dir_tmp <-  dir(bam_dir)[grep(".bam",dir(bam_dir), fixed = T)]
+  # bam_dir_tmp2 <- bam_dir_tmp[grep(".bam",sapply(1: length(bam_dir_tmp), function(x) substr(bam_dir_tmp[x], nchar(bam_dir_tmp[x])-3, nchar(bam_dir_tmp[x])) ))]
+  bam_dir_tmp <- read.table(bam_dir, header = FALSE)
+  bam_dir_tmp2 <- bam_dir_tmp[,1]
   text_bam_numbers<- paste("There are ", length(bam_dir_tmp2), " bam files.", sep="" )
+
   # Read in bed file
   bed_file <- read.table(bed_file, sep = "\t", header = T)
   # Check given bed files
@@ -16,7 +19,8 @@ data_preproc<- function(bed_file, chr, bam_dir, min_cov, filename){
   bed_file_sorted <- bed_file[order(bed_file[,2]), ]
   text_bed_regions<- paste("There are ", nrow(bed_file_sorted), " regions on chromosome ", chr, ".", sep="")
   # Generate ID
-  id_tmp <- gsub(".bam", "", bam_dir_tmp2)
+  bam_dir_tmp3 <- sub(".*/", "", bam_dir_tmp2)
+  id_tmp <- gsub(".bam", "", bam_dir_tmp3)
   # Generate the range from bed file
   ref_tmp <- IRanges(start = bed_file_sorted[, 2], end = bed_file_sorted[, 3])
   # Calculate the coverage of all targed regions for all individuals and total mapped read (TMR)
@@ -27,18 +31,18 @@ data_preproc<- function(bed_file, chr, bam_dir, min_cov, filename){
   what <- c("pos", "mapq", "qwidth")
   flag <- scanBamFlag(isDuplicate = FALSE, isUnmappedQuery = FALSE, isNotPassingQualityControls = FALSE, isFirstMateRead = TRUE)
   param <- ScanBamParam(which = which, what = what, flag = flag)
-  sample_names<- sub(".bam", "", bam_dir_tmp2)
+  sample_names<- sub(".bam", "", bam_dir_tmp3)
   Cov_matrix <- matrix(NA, nrow = length(ref_tmp), ncol = length(bam_dir_tmp2))
   TMR <- rep(0, length(bam_dir_tmp2))
   
   for(i in 1: length(bam_dir_tmp2)){
    # progress$inc((1/length(bam_dir_tmp2))*0.6 , detail = paste("Calculating coverage and total mapped read of sample ", i, sep=""))
     print(paste("Calculating coverage and total mapped read of sample ", i, sep=""))
-    bam <- scanBam(paste(bam_dir, "/",bam_dir_tmp2[i], sep=""), param = param)[[1]]
+    bam <- scanBam(paste(bam_dir_tmp2[i]), param = param)[[1]]
     #readlength[i] <- round(mean(bam[["qwidth"]]))
     irang <- IRanges(bam[["pos"]], width = bam[["qwidth"]])
     Cov_matrix[,i] <- countOverlaps(ref_tmp, irang)
-    TMR[i] <- sum(idxstatsBam(paste(bam_dir, "/",bam_dir_tmp2[i], sep=""))[,3])
+    TMR[i] <- sum(idxstatsBam(paste(bam_dir_tmp2[i]))[,3])
   }
   
   ##----- Data pre-processing -----##
