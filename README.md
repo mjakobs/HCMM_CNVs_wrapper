@@ -15,11 +15,21 @@ Bioinformatics. https://doi.org/10.1093/bioinformatics/btab183
 
 ## Running the HCMM-CNVs wrapper
 
+You will need to provide the following information:
+* `bedfile`: A bed file 
+* `chr`: The chromosome that you would like to investigate
+* `bam_directory`: A `.txt` file containing the full path to the bam files that you would like to investigate.  One bam file per row - see the `input_bams.txt` file in the `Toy_example` folder for proper formatting
+* `min_coverage`: Minimum mean coverage.  The default value is `"10"`.  HCMM-CNVs will filter regions below the threhold in all samples. 
+* `filename`: The name of your analysis
+* `n_clusters`: The number of clusters for the hierarchical clustering step.  This should be a value from 2-4.  The default value is `"3"`
+* `code_dir`: The full path to where you have installed `HCMM_CNVs_wrapper`
+* `ploidy_file`: This should be `"1"` if you do not have ploidy information, or the path to a file containing your ploidy information. 
+
 Make sure R is loaded in your environment and then run the following in the folder in which you would like your results to be stored.  
 ```
 bedfile="/path/to/HCMM_CNVs_wrapper/Toy_example/Demo.bed"
 chr="19"
-bam_directory="/path/to/HCMM_CNVs_wrapper/Toy_example/"
+bam_directory="/path/to/HCMM_CNVs_wrapper/Toy_example/input_bams.txt"
 min_coverage="10"
 filename="Test"
 n_cluster="3"
