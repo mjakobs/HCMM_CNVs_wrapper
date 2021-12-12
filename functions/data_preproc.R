@@ -77,7 +77,7 @@ data_preproc<- function(bed_file, chr, bam_dir, min_cov, filename){
   text_cov_summary<- paste("After data processing, there are ", ncol(matrix_adj_Cov_rm_duplicated), " target regions.", sep="")
   #progress$inc(0.1, detail = paste("Generating coverage matrix..."))
   print(paste("Generating coverage matrix..."))
-  save(sample_names, bed_file_sorted, matrix_adj_Cov_rm_duplicated, file = paste("Cov_matrix_", filename, ".RData", sep=""))
+  save(sample_names, bed_file_sorted, matrix_adj_Cov_rm_duplicated, file = paste("Cov_matrix_chr_",chr,"_", filename, ".RData", sep=""))
   text_cov_rdata<- paste("Coverage results were saved to ",getwd(),"Cov_matrix_", filename, ".RData.",  sep="")
   
   #text1<- head(bed_file)
