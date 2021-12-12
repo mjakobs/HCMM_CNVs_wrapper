@@ -17,7 +17,7 @@ Bioinformatics. https://doi.org/10.1093/bioinformatics/btab183
 
 You will need to provide the following information:
 * `bedfile`: A bed file 
-* `chr`: The chromosome that you would like to investigate
+* `chr`: The chromosome that you would like to investigate, e.g. `"19"`.  Alternatively, if `chr` is set to `"all"`, all chromosomes present in the bed file will be analysed.  
 * `bam_directory`: A `.txt` file containing the full path to the bam files that you would like to investigate.  One bam file per row - see the `input_bams.txt` file in the `Toy_example` folder for proper formatting
 * `min_coverage`: Minimum mean coverage.  The default value is `"10"`.  HCMM-CNVs will filter regions below the threhold in all samples. 
 * `filename`: The name of your analysis
