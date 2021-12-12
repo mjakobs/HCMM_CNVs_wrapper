@@ -15,9 +15,9 @@ data_preproc<- function(bed_file, chr, bam_dir, min_cov, filename){
   # Read in bed file
   bed_file <- read.table(bed_file, sep = "\t", header = T)
   # Check given bed files
-  bed_file <- bed_file[bed_file[,1]==chr, ]
-  bed_file_sorted <- bed_file[order(bed_file[,2]), ]
-  text_bed_regions<- paste("There are ", nrow(bed_file_sorted), " regions on chromosome ", chr, ".", sep="")
+  # bed_file <- bed_file[bed_file[,1]==chr, ]
+  bed_file_sorted <- bed_file[order(bed_file[,1],bed_file[,2]), ]
+  text_bed_regions<- paste("There are ", nrow(bed_file_sorted), " regions in exome ", chr, ".", sep="")
   # Generate ID
   bam_dir_tmp3 <- sub(".*/", "", bam_dir_tmp2)
   id_tmp <- gsub(".bam", "", bam_dir_tmp3)
