@@ -66,7 +66,7 @@ HCMM_CNVs<- function(Cov_matrix, n_cluster, bed_file_sorted, sample_names, filen
     #progress$inc(0.1, detail = paste("Saving result into RData"))
     print( paste("Saving result into RData"))
     names(CBS_all) <- sample_names
-    save(CBS_all, file = paste("CBS_", filename, ".RData", sep=""))
+    save(CBS_all, file = paste("CBS_chr_",chr,"_", filename, ".RData", sep=""))
     test<- paste("There are ", ncol(Cov_matrix), " target regions.", sep="")
     return(list(test = test))
   }else{
