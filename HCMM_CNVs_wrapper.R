@@ -70,6 +70,12 @@ if(chr != "all"){
     dev.off()
   }
   
+  # save text copy number output
+  for(t in 1:length(names(CBS_all))){
+    sample_tmp <- names(CBS_all)[t]
+    write.table(CBS_all[[t]][[2]], paste(sample_tmp,"_chr_",chr,"_copy_number.txt", sep = ""), sep = "\t", quote = FALSE, row.names = FALSE)
+  }
+  
 }else if(chr == "all"){
   print("Analysing all chromosomes")
   
