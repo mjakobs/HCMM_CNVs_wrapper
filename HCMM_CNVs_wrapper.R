@@ -70,13 +70,36 @@ if(chr != "all"){
     dev.off()
   }
   
+  # save text copy number output
+  for(t in 1:length(names(CBS_all))){
+    sample_tmp <- names(CBS_all)[t]
+    write.table(CBS_all[[t]][[2]], paste(sample_tmp,"_chr_",chr,"_copy_number.txt", sep = ""), sep = "\t", quote = FALSE, row.names = FALSE)
+  }
+  
 }else if(chr == "all"){
   print("Analysing all chromosomes")
   
   bed <- read.table(bed_file, sep = "\t", header = T)
   chr_list <- levels(as.factor(bed[,1]))
-  for(i in 1:length(chr_list)){
-    chr_tmp <- chr_list[i]
+  
+  # make output table for each sample
+  bam_names <- read.table(bam_dir, header = F, sep = "\t")
+  bam_names[,1] <- gsub(".*/","",bam_names[,1])
+  bam_names[,1] <- gsub(".bam","",bam_names[,1])
+  
+  
+  cn_data <- as.data.frame(matrix(nrow = 1, ncol = 6))
+  colnames(cn_data) <- c("ID", "chrom", "loc.start",  "loc.end", "num.mark", "seg.mean")
+  
+  list_df <- lapply(bam_names[,1], function(x) cbind(bam_names[x,1],cn_data))
+  names(list_df) <- paste(bam_names[,1],"_CN", sep = "")
+  list_df <- lapply(names(list_df),function(x) list_df[[x]][,-1])
+  names(list_df) <- paste(bam_names[,1],"_CN", sep = "")
+  list_df <- lapply(names(list_df),function(x) list_df[[x]][-1,])
+  names(list_df) <- paste(bam_names[,1],"_CN", sep = "")
+  
+  for(c in 1:length(chr_list)){
+    chr_tmp <- chr_list[c]
     ######################
     # Run pre-processing #
     ######################
@@ -109,13 +132,24 @@ if(chr != "all"){
     
     load(file = paste("CBS_chr_",chr_tmp,"_", filename, ".RData", sep=""))
     
+    # save copy number figure
     for(i in 1:length(names(CBS_all))){
       png(paste("CNVs_chr_",chr_tmp,"_", names(CBS_all)[i], ".png", sep=""))
       plot(CBS_all[[i]])
       dev.off()
     }
-    
+    # save copy number text
+    for(s in 1:length(names(list_df))){
+      sample_tmp <- names(list_df)[s]
+      sample_tmp <- gsub("_CN","",sample_tmp)
+      list_df[[s]] <- rbind(list_df[[s]],CBS_all[[sample_tmp]][[2]])
+      
+    }
   }
-  
+  for(t in 1:length(names(list_df))){
+    sample_tmp <- names(list_df)[t]
+    sample_tmp <- gsub("_CN","",sample_tmp)
+      write.table(list_df[[t]], paste(sample_tmp,"_copy_number.txt", sep = ""), sep = "\t", quote = FALSE, row.names = FALSE)
+  }
 }
 
