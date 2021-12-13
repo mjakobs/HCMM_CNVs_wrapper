@@ -153,3 +153,6 @@ if(chr != "all"){
   }
 }
 
+# Clean up intermediate files
+sapply(list.files(pattern = ".RData"), unlink)
+
