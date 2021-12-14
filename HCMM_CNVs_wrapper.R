@@ -82,6 +82,7 @@ if(chr != "all"){
   bed <- read.table(bed_file, sep = "\t", header = T)
   chr_list <- levels(as.factor(bed[,1]))
   chr_list <- chr_list[nchar(chr_list)<=5]
+  chr_list <- chr_list[-grep("M",chr_list)]
   
   # make output table for each sample
   bam_names <- read.table(bam_dir, header = F, sep = "\t")
