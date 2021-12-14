@@ -13,7 +13,7 @@ data_preproc<- function(bed_file, chr, bam_dir, min_cov, filename){
   text_bam_numbers<- paste("There are ", length(bam_dir_tmp2), " bam files.", sep="" )
 
   # Read in bed file
-  bed_file <- read.table(bed_file, sep = "\t", header = T)
+  bed_file <- read.table(bed_file, sep = "\t", header = F)
   # Check given bed files
   bed_file <- bed_file[bed_file[,1]==chr, ]
   bed_file_sorted <- bed_file[order(bed_file[,2]), ]
